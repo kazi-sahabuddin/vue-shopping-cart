@@ -5,6 +5,7 @@
         :key="cartItem.id"
         :item="cartItem"
         @item-remove="$emit('item-remove', $event)"
+        @update-quantity="$emit('update-quantity', $event)"
         ></CartListItem>
     </div>
 
@@ -14,7 +15,7 @@
 import CartListItem from './CartListItem.vue';
 
 defineProps(['cartItems']);
-defineEmits(['item-remove']);
+defineEmits(['item-remove', 'update-quantity']);
 </script>
 
 <style scoped>

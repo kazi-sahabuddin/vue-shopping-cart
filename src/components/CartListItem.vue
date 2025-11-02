@@ -18,14 +18,15 @@
       </div>
       <div class="item-actions">
         <div class="quantity-selector">
-          <button class="quantity-change-button">−</button>
+          <button class="quantity-change-button" @click="updateQuantity(item.id, item.quantity -1)">−</button>
           <input
             type="text"
             class="quantity-input"
             :value="item.quantity"
             aria-label="quantity"
+            @blur="updateQuantity(item.id, $event.target.value)"
           />
-          <button class="quantity-change-button">+</button>
+          <button class="quantity-change-button" @click="updateQuantity(item.id, item.quantity +1)">+</button>
         </div>
         <button class="remove-item" @click="$emit('item-remove', item.id)">✕</button>
       </div>
@@ -36,7 +37,16 @@
 <script setup>
 
 defineProps(['item'])
-let emit = defineEmits(['item-remove'])
+let emit = defineEmits(['item-remove','update-quantity'])
+
+function updateQuantity(id, newQuantity){
+  if(newQuantity > 0){
+    emit('update-quantity',{id,newQuantity})
+  } else {
+    emit('item-remove',id);
+  }
+  
+}
 
 </script>
 
