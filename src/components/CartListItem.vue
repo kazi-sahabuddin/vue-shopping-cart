@@ -27,7 +27,7 @@
           />
           <button class="quantity-change-button">+</button>
         </div>
-        <button class="remove-item">✕</button>
+        <button class="remove-item" @click="$emit('item-remove', item.id)">✕</button>
       </div>
     </div>
   </div>
@@ -36,6 +36,7 @@
 <script setup>
 
 defineProps(['item'])
+let emit = defineEmits(['item-remove'])
 
 </script>
 

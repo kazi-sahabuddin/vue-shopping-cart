@@ -4,6 +4,7 @@
         v-for="cartItem in cartItems"
         :key="cartItem.id"
         :item="cartItem"
+        @item-remove="$emit('item-remove', $event)"
         ></CartListItem>
     </div>
 
@@ -13,6 +14,7 @@
 import CartListItem from './CartListItem.vue';
 
 defineProps(['cartItems']);
+defineEmits(['item-remove']);
 </script>
 
 <style scoped>
